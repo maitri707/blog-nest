@@ -53,4 +53,3 @@ nodemon --save-dev
 - **Node.js**: JavaScript runtime for server-side development.
 - **Express.js**: Web framework for Node.js.
 - **EJS**: Templating engine to generate HTML markup with plain JavaScript.
-

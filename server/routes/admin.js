@@ -10,7 +10,14 @@ const jwt = require('jsonwebtoken');
 
 const adminLayout = '../views/layouts/admin';
 
-const jwtSecret = process.env.JWT_SECRET;
+// Prefer an explicit JWT_SECRET. Fall back to SESSION_SECRET or a dev fallback so
+// jwt.sign() always receives a value (avoids "secretOrPrivateKey must have a value").
+// In production you should set JWT_SECRET and avoid the insecure fallback.
+const jwtSecret = process.env.JWT_SECRET || process.env.SESSION_SECRET || 'dev_jwt_secret_change_me';
+
+if (!process.env.JWT_SECRET && !process.env.SESSION_SECRET) {
+  console.warn('Warning: JWT_SECRET and SESSION_SECRET are not set. Using insecure fallback secret. Set JWT_SECRET in your .env for production.');
+}
 
 
 
